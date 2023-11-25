@@ -1,0 +1,63 @@
+<div class="row m-3">
+  <div class="col-md-6">
+    <a routerLink="/"><i class="fa fa-arrow-circle-left"></i> Back to dashboard</a>
+  </div>
+  <div class="col-md-6">
+    <div class="btn-group pull-right">
+
+      <button class="btn btn-danger" routerLink="/client/edit/{{id}}">
+        <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+      </button>
+
+      <button class="btn btn-dark" (click)="removeClient(id)">
+        <i class="fa fa-trash" aria-hidden="true"></i> Delete
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title"> {{client.firstName}} {{client.lastName}} </h4>
+
+    <div class="row">
+      <div class="col-md-8">
+        <ul class="list-group">
+          <li class="list-group-item"> id : <strong>{{id}}</strong></li>
+          <li class="list-group-item"> phone : <strong> {{client.phone}}</strong></li>
+          <li class="list-group-item">email : <strong> {{client.email}}</strong></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 text-right">
+         <span class="h5">balance </span><button class="btn btn-success" (click)="showBalance=!showBalance">
+           <i class="fa fa-pencil" aria-hidden="true"></i>
+         </button>
+         <h4 [ngClass]="{'text-danger' : showBalance , 'text-success' : !showBalance}">{{client.balance |currency:'USD':'symbol'}}</h4>
+         
+         <div *ngIf="showBalance">
+           <form (submit)="onSubmit()">
+             <div class="input-group">
+               <input type="text" class="form-control" name="balance" [(ngModel)]="client.balance">
+                 <div class="btn-group">
+                   <button class="btn btn-warning">Update</button>
+                 </div>
+             </div>
+           </form>
+         </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+
+    
+
+  </div>
+</div>
